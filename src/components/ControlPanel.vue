@@ -176,7 +176,7 @@ const downloadResult = (): void => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .control-panel {
   background: white;
   border-radius: 8px;
@@ -203,5 +203,17 @@ const downloadResult = (): void => {
   margin-bottom: 8px;
   font-weight: 500;
   color: #374151;
+}
+
+.upload-tip {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+@media (max-width: 1200px) {
+  .control-panel {
+    margin-bottom: 20px;
+  }
 }
 </style>

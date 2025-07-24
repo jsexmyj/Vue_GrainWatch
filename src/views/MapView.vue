@@ -29,7 +29,7 @@ const { initMap, loadResultOnMap } = useMap(appState.resultPath)
     </div>
 </template>
 
-<style>
+<style scoped>
 .map-container {
     background: white;
     border-radius: 8px;
@@ -57,5 +57,13 @@ const { initMap, loadResultOnMap } = useMap(appState.resultPath)
 #map {
     height: 600px;
     width: 100%;
+}
+
+.map-info {
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+  font-size: 14px;
+  color: #6b7280;
 }
 </style>

@@ -18,3 +18,43 @@ const isProcessing = appState.isProcessing.value
         </div>
     </div>
 </template>
+
+<style scoped>
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.loading-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #1e40af;
+}
+
+.loading-title {
+  font-size: 16px;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.loading-desc {
+  font-size: 14px;
+  color: #6b7280;
+}
+</style>

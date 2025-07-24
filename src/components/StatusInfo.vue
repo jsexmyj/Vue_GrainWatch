@@ -15,12 +15,8 @@ const statusType = appState.statusType.value
   </div>
 </template>
 
-<style>
-.status-info {
-  padding: 16px 24px;
-  background: #f8fafc;
-  border-top: 1px solid #e5e7eb;
-  font-size: 14px;
-  color: #6b7280;
+<style scoped>
+.status-container {
+  margin-top: 16px;
 }
 </style>

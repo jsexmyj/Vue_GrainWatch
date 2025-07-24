@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .header {
   background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
   color: white;

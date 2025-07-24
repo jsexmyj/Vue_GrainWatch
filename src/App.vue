@@ -52,4 +52,11 @@ provide('appState', appState)
     gap: 20px;
     height: calc(100vh - 120px);
 }
+
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
 </style>
