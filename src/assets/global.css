@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+.el-button--primary {
+    background-color: #1e40af;
+    border-color: #1e40af;
+}
+
+.el-button--primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.upload-tip {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .control-panel {
+        margin-bottom: 20px;
+    }
+}
