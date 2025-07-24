@@ -10,7 +10,7 @@ const statusType = appState.statusType.value
 </script>
 
 <template>
-  <div v-if="statusMessage" class="status-info">
+  <div class="status-container" v-if="statusMessage">
     <el-alert :title="statusMessage" :type="statusType" :closable="false"> </el-alert>
   </div>
 </template>

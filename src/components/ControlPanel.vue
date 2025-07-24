@@ -101,8 +101,8 @@ const downloadResult = (): void => {
     <div class="form-group">
       <label class="form-label">输入数据</label>
       <el-radio-group v-model="inputType" @change="handleInputTypeChange">
-        <el-radio label="url">链接输入</el-radio>
-        <el-radio label="file">文件上传</el-radio>
+        <el-radio-button label="url">链接输入</el-radio-button>
+        <el-radio-button label="file">文件上传</el-radio-button>
       </el-radio-group>
 
       <div v-if="inputType === 'url'" style="margin-top: 12px">

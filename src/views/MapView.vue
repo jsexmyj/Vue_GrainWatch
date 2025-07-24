@@ -13,7 +13,7 @@ const { initMap, loadResultOnMap } = useMap(appState.resultPath)
     <div class="map-container">
         <div class="map-header">
             <div class="map-title">结果可视化</div>
-            <div v-if="resultPath" style="font-size: 12px; color: #6b7280;">
+            <div class="map-status" v-if="resultPath" style="font-size: 12px; color: #6b7280;">
                 结果已加载
             </div>
         </div>
@@ -37,6 +37,7 @@ const { initMap, loadResultOnMap } = useMap(appState.resultPath)
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: fit-content;
 }
 
 .map-header {

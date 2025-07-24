@@ -13,8 +13,8 @@ const isProcessing = appState.isProcessing.value
             <el-icon size="32px" style="margin-bottom: 16px;">
                 <loading></loading>
             </el-icon>
-            <div style="font-size: 16px; color: #1f2937;">正在进行耕地识别分析...</div>
-            <div style="font-size: 14px; color: #6b7280; margin-top: 8px;">请耐心等待，这可能需要几分钟时间</div>
+            <div class="loading-title">正在进行耕地识别分析...</div>
+            <div class="loading-desc">请耐心等待，这可能需要几分钟时间</div>
         </div>
     </div>
 </template>
