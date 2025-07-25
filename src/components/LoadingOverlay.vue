@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 import type { AppState } from '@/types'
-
+import { Loading } from '@element-plus/icons-vue'
 const appState = inject<AppState>('appState')!
 const isProcessing = appState.isProcessing.value
 </script>

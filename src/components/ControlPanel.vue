@@ -4,6 +4,7 @@ import { ref, computed, inject } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 import type { AppState, InputType, FileUploadInfo, RecognitionRequest } from '@/types'
+import { uploadFile } from '@/service/upLoadFile'
 import StatusInfo from './StatusInfo.vue'
 
 const router = useRouter()
@@ -19,6 +20,10 @@ const inputFile = ref<File | null>(null)
 const rasterFile = ref<File | null>(null)
 const outputRoot = ref<string>('')
 
+// 存储上传后的文件路径
+const uploadedInputPath = ref<string>('')
+const uploadedRasterPath = ref<string>('')
+
 // 计算属性
 const canSubmit = computed<boolean>(() => {
   const hasInput =
@@ -31,22 +36,41 @@ const canSubmit = computed<boolean>(() => {
 const handleInputTypeChange = (): void => {
   inputUrl.value = ''
   inputFile.value = null
+  uploadedInputPath.value = ''
 }
 
-const handleInputFileChange = (file: FileUploadInfo): void => {
+const handleInputFileChange = async (file: FileUploadInfo): Promise<void> => {
   inputFile.value = file.raw
+  // 立即上传文件并获取路径
+  try {
+    uploadedInputPath.value = await uploadFile(file.raw)
+    ElMessage.success('输入文件上传成功')
+  } catch (error) {
+    inputFile.value = null
+    uploadedInputPath.value = ''
+  }
 }
 
 const handleInputFileRemove = (): void => {
   inputFile.value = null
+  uploadedInputPath.value = ''
 }
 
-const handleRasterFileChange = (file: FileUploadInfo): void => {
+const handleRasterFileChange = async (file: FileUploadInfo): Promise<void> => {
   rasterFile.value = file.raw
+  // 立即上传文件并获取路径
+  try {
+    uploadedRasterPath.value = await uploadFile(file.raw)
+    ElMessage.success('栅格文件上传成功')
+  } catch (error) {
+    rasterFile.value = null
+    uploadedRasterPath.value = ''
+  }
 }
 
 const handleRasterFileRemove = (): void => {
   rasterFile.value = null
+  uploadedRasterPath.value = ''
 }
 
 const startRecognition = async (): Promise<void> => {
@@ -57,15 +81,13 @@ const startRecognition = async (): Promise<void> => {
 
     if (inputType.value === 'url') {
       inputPath = inputUrl.value.trim()
-    } else if (inputFile.value) {
-      inputPath = `/uploads/${inputFile.value.name}`
+    } else {
+      inputPath = uploadedInputPath.value
     }
-
-    const rasterPath = rasterFile.value ? `/uploads/${rasterFile.value.name}` : ''
 
     const requestData: RecognitionRequest = {
       input_path: inputPath,
-      raster_path: rasterPath,
+      raster_path: uploadedRasterPath.value,
       model_path: null,
       output_root: outputRoot.value.trim() || null,
     }
@@ -101,8 +123,8 @@ const downloadResult = (): void => {
     <div class="form-group">
       <label class="form-label">输入数据</label>
       <el-radio-group v-model="inputType" @change="handleInputTypeChange">
-        <el-radio-button label="url">链接输入</el-radio-button>
-        <el-radio-button label="file">文件上传</el-radio-button>
+        <el-radio value="url">链接输入</el-radio>
+        <el-radio value="file">文件上传</el-radio>
       </el-radio-group>
 
       <div v-if="inputType === 'url'" style="margin-top: 12px">
@@ -182,12 +204,13 @@ const downloadResult = (): void => {
   border-radius: 8px;
   padding: 24px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  height: fit-content;
+  height: max-content;
+  font-weight: 800;
 }
 
 .panel-title {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 800;
   color: #1f2937;
   margin-bottom: 20px;
   padding-bottom: 10px;

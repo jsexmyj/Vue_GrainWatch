@@ -13,11 +13,12 @@ export function useRecognition() {
     statusMessage.value = ''
     
     try {
-      const response = await axios.put<RecognitionResponse>('/grain_ask', requestData, {
+      const response = await axios.put<RecognitionResponse>('/api/grain_ask', requestData, {
         headers: { 'Content-Type': 'application/json' },
         timeout: 300000
       })
       
+      console.log("返回结果路径为：",response.data.result_path)
       if (response.data?.result_path) {
         resultPath.value = response.data.result_path
         statusMessage.value = '耕地识别完成！结果已在地图上显示。'

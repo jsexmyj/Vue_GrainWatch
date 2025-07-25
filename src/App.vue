@@ -7,7 +7,6 @@ import type { AppState } from '@/types/index'
 import ControlPanel from './components/ControlPanel.vue'
 import MapView from './views/MapView.vue'
 import LoadingOverlay from './components/LoadingOverlay.vue'
-import axios from 'axios'
 
 
 const {
